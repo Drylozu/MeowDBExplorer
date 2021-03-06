@@ -14,6 +14,14 @@ export default class Explorer extends React.Component {
         };
     }
 
+    deleteAll() {
+        localStorage.removeItem('originalJSON');
+        localStorage.removeItem('actualJSON');
+        this.setState({
+            goBack: true
+        });
+    }
+
     exportFile() {
         return JSON.stringify(this.state.actualJSON);
     }
@@ -62,6 +70,10 @@ export default class Explorer extends React.Component {
                         exportFile={this.exportOriginalFile}
                         label='Download original JSON'
                         filename='original.json' />
+                    <a className={styles.button}
+                        style={{ color: '#ff0000' }}
+                        onClick={() => this.deleteAll()}
+                    >Delete all</a>
                 </div>
                 <div className={styles.tree}>{this.renderTree(this.state.loadedJSON)}</div>
             </>);
