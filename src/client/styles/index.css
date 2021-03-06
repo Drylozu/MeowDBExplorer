@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Noto+Sans+JP:wght@500&display=swap");
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: #ccc;
+    color: #181818;
+}
+
+body.darkTheme {
+    background-color: #181818;
+    color: #ccc;
+}
+
+.navbar {
+    width: 100%;
+    height: 8vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.darkTheme .navbar {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.navbar .logo {
+    margin-left: 10px;
+    max-height: min-content;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar .logo span {
+    margin-left: 10px;
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ccc;
+}
+
+.navbar .themeChanger {
+    margin: 0px 20px 0px 30px;
+    width: 50px;
+    height: 25px;
+    display: inline-block;
+}
+
+.themeChanger input {
+    display: none;
+}
+
+.themeChanger input:checked + .slider {
+    background-color: #ccc;
+}
+
+.themeChanger input:checked + .slider:before {
+    -webkit-transform: translateX(25px);
+    -ms-transform: translateX(25px);
+    transform: translateX(25px);
+}
+
+.themeChanger .slider {
+    position: absolute;
+    background-color: #181818;
+    width: inherit;
+    height: inherit;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 400ms;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    background-color: #fff;
+    transition: 400ms;
+}
+
+.slider:after {
+    margin: 1.6px 0px 0px 3px;
+    display: block;
+    content: "🌙🌞";
+    height: 25px;
+}
+
+.navbar .rightSide {
+    display: flex;
+    align-content: center;
+}
+
+.rightSide a {
+    height: min-content;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ccc;
+    font-family: 'Noto Sans JP', sans-serif;
+    margin-left: 20px;
+}
+
+body .page {
+    font-family: 'Manrope', sans-serif;
+    height: max-content;
+}
+
+::selection, ::-moz-selection {
+    background-color: #666666;
+}
+
+@media (max-width: 480px)   {
+    .rightSide .themeChanger {
+        display: none;
+    }
+
+    .navbar .rightSide a {
+        margin: 0px 20px 0px 0px;
+    }
+}
+
+@media (max-width: 410px)   {
+    .navbar .rightSide a:nth-child(2) {
+        display: none;
+    }
+}
+
+@media (max-width: 342px)   {
+    .navbar .rightSide {
+        display: none;
+    }
+}

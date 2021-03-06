@@ -39,7 +39,7 @@ module.exports = {
     },
     plugins: [
         new WebpackBar({
-            name: 'React App'
+            name: 'MeowDB Explorer Page'
         }),
         new htmlWebpack({
             template: './src/client/index.html',
