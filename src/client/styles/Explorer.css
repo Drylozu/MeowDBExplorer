@@ -1,25 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 .utils {
-    position: absolute;
     top: 8vh;
     width: 100%;
     height: 6vh;
     display: flex;
-    justify-content: flex-end;
+    position: absolute;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .utils .button {
-    padding: 2px 10px;
-    margin-right: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-    height: min-content;
+    color: inherit;
     cursor: pointer;
     transition: 400ms;
+    padding: 2px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    height: min-content;
     text-decoration: none;
-    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
 [class*="darkTheme"] .utils .button {
@@ -32,15 +32,15 @@
 
 .tree {
     top: 6vh;
+    font-size: 14px;
+    margin: 0px 20px;
     position: relative;
     font-family: 'Roboto Mono', monospace;
-    margin: 0px 20px;
-    font-size: 14px;
 }
 
 .tree .property {
-    width: max-content;
     display: flex;
+    width: max-content;
 }
 
 .property img {
@@ -55,8 +55,8 @@
 }
 
 .property .value {
-    margin-left: 6px;
     display: flex;
+    margin-left: 6px;
     width: min-content;
     white-space: nowrap;
 }
@@ -66,12 +66,12 @@
 }
 
 .property .value input {
-    resize: horizontal;
+    height: 16px;
     color: inherit;
     font-size: 15px;
-    height: 16px;
-    font-family: inherit;
+    resize: horizontal;
     width: min-content;
+    font-family: inherit;
 }
 
 [class*="darkTheme"] .property .value input {

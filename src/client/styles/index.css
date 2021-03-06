@@ -1,28 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Noto+Sans+JP:wght@500&display=swap");
 
+::selection, ::-moz-selection {
+    background-color: #666666;
+}
+
 html, body {
-    padding: 0px;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #ccc;
     color: #181818;
+    background-color: #ccc;
 }
 
 body.darkTheme {
-    background-color: #181818;
     color: #ccc;
+    background-color: #181818;
 }
 
 .navbar {
     width: 100%;
     height: 8vh;
-    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .darkTheme .navbar {
@@ -30,25 +34,25 @@ body.darkTheme {
 }
 
 .navbar .logo {
-    margin-left: 10px;
-    max-height: min-content;
     display: flex;
+    margin-left: 10px;
     align-items: center;
     text-decoration: none;
+    max-height: min-content;
 }
 
 .navbar .logo span {
-    margin-left: 10px;
-    font-size: 22px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #ccc;
+    font-size: 22px;
+    margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .navbar .themeChanger {
-    margin: 0px 20px 0px 30px;
     width: 50px;
     height: 25px;
     display: inline-block;
+    margin: 0px 20px 0px 30px;
 }
 
 .themeChanger input {
@@ -60,36 +64,34 @@ body.darkTheme {
 }
 
 .themeChanger input:checked + .slider:before {
-    -webkit-transform: translateX(25px);
-    -ms-transform: translateX(25px);
     transform: translateX(25px);
 }
 
 .themeChanger .slider {
-    position: absolute;
-    background-color: #181818;
     width: inherit;
     height: inherit;
-    border-radius: 34px;
     cursor: pointer;
+    position: absolute;
+    border-radius: 34px;
+    background-color: #181818;
     transition: background-color 400ms;
 }
 
 .slider:before {
-    position: absolute;
     content: "";
     width: 25px;
     height: 25px;
+    transition: 400ms;
+    position: absolute;
     border-radius: 50px;
     background-color: #fff;
-    transition: 400ms;
 }
 
 .slider:after {
-    margin: 1.6px 0px 0px 3px;
+    height: 25px;
     display: block;
     content: "🌙🌞";
-    height: 25px;
+    margin: 1.6px 0px 0px 3px;
 }
 
 .navbar .rightSide {
@@ -98,21 +100,17 @@ body.darkTheme {
 }
 
 .rightSide a {
-    height: min-content;
-    font-size: 16px;
-    text-decoration: none;
     color: #ccc;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px;
     margin-left: 20px;
+    height: min-content;
+    text-decoration: none;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 body .page {
-    font-family: 'Manrope', sans-serif;
     height: max-content;
-}
-
-::selection, ::-moz-selection {
-    background-color: #666666;
+    font-family: 'Manrope', sans-serif;
 }
 
 @media (max-width: 480px)   {

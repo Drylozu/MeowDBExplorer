@@ -2,8 +2,8 @@
     width: 100%;
     height: 40vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     background-color: #3eb899;
 }
@@ -14,33 +14,33 @@
 
 .header .title {
     margin: 0px;
-    font-size: 40px;
     color: #fff;
+    font-size: 40px;
 }
 
 .center {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
 }
 
 .center .hint {
-    margin: 30px 15px;
     font-size: 25px;
+    margin: 30px 15px;
     text-align: center;
 }
 
 .center .button {
-    text-decoration: none;
     color: #000;
     font-size: 18px;
-    padding: 12px 18px;
-    border: 2px solid #3eb899;
-    transition: 200ms;
-    border-radius: 10px;
     cursor: pointer;
+    transition: 200ms;
+    padding: 12px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 2px solid #3eb899;
 }
 
 [class*="darkTheme"] .center .button {
@@ -53,8 +53,8 @@
 
 .center input {
     width: 0px;
-    height: 0px;
     opacity: 0;
+    height: 0px;
 }
 
 @media (max-height: 580px)   {
