@@ -47,6 +47,7 @@ module.exports = {
         new htmlWebpack({
             template: './src/client/index.html',
             filename: 'index.html',
+            favicon: './src/client/assets/icon.png',
             meta: {
                 // Title
                 'twitter:title': 'MeowDB Explorer',
