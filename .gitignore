@@ -1,9 +1,2 @@
 node_modules/
-
-# i dont know what i did but it works ;)
-dist/*
-!dist/public/
-dist/public/*
-dist/public/assets/*
-!dist/public/assets/
-!dist/public/assets/icon.png
+dist/
