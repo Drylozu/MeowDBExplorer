@@ -3,7 +3,10 @@ const WebpackBar = require('webpackbar');
 
 module.exports = {
     stats: 'errors-only',
-    entry: './src/client/index.js',
+    entry: {
+        main: './src/client/index.js',
+        theme: './src/client/theme.js'
+    },
     output: {
         filename: '[contenthash].js',
         path: require('path').join(__dirname, 'dist/public/')
