@@ -20,7 +20,9 @@ export default class App extends React.Component {
 
     componentDidMount() {
         const darkMode = localStorage.getItem('darkMode');
-        this.themeChanger.current.checked = JSON.parse(darkMode);
+        if (JSON.parse(darkMode) && !document.body.classList.contains(styles.darkTheme))
+            document.body.classList.add(styles.darkTheme);
+        this.themeChanger.current.checked = !!JSON.parse(darkMode);
     }
 
     render() {
