@@ -57,6 +57,7 @@ export default class Explorer extends React.Component {
                         onClick={() => this.setState({ goBack: true })}
                     >Go back</a>
                     <DownloadLink
+                        style={null}
                         className={styles.button}
                         exportFile={this.exportOriginalFile}
                         label='Download original JSON'

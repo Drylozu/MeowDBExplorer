@@ -85,8 +85,9 @@ export default class Property extends React.Component {
                         : ''
                     : null}
                 {typeof this.props.data === 'string' ? '"' : ''}
+                {!this.props.last && typeof this.props.data === 'object' ? ',' : ''}
             </div>
-            {this.props.last ? '' : ','}
+            {!this.props.last && typeof this.props.data !== 'object' ? ',' : ''}
         </div >);
     }
 }
