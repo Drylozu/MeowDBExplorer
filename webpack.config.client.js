@@ -47,6 +47,16 @@ module.exports = {
         new htmlWebpack({
             template: './src/client/index.html',
             filename: 'index.html',
+            meta: {
+                // Title
+                'twitter:title': 'MeowDB Explorer',
+                'og:title': 'MeowDB Explorer',
+                'og:site_name': 'MeowDB Explorer',
+                // Description
+                'twitter:description': 'Explore the content of JSON files with this tool',
+                'og:description': 'Explore the content of JSON files with this tool',
+                description: 'Explore the content of JSON files with this tool'
+            },
             base: '/'
         })
     ]
