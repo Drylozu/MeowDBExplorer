@@ -8,7 +8,7 @@
     background-color: #3eb899;
 }
 
-[class*="darkTheme"] .header {
+[class^="darkTheme"] .header {
     background-color: #41a088;
 }
 
@@ -43,7 +43,7 @@
     border: 2px solid #3eb899;
 }
 
-[class*="darkTheme"] .center .button {
+[class^="darkTheme"] .center .button {
     color: #ccc;
 }
 

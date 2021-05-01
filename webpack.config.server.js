@@ -5,6 +5,7 @@ module.exports = {
     stats: 'errors-only',
     entry: './src/server.js',
     output: {
+        clean: true,
         filename: 'server.js',
         path: require('path').join(__dirname, 'dist/')
     },

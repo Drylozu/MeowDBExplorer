@@ -13,5 +13,5 @@ app.get('*', (req, res) => {
 
 app.listen(app.get('port'), (err) => {
     if (err) return console.error(err);
-    console.log(`Server listening on port :${app.get('port')}`);
+    console.log(`Server ready! http://localhost:${app.get('port')}`);
 });

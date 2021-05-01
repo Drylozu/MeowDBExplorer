@@ -1,15 +1,22 @@
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const htmlWebpack = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const path = require('path');
+
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
+    mode: process.env.NODE_ENV,
     stats: 'errors-only',
     entry: {
         main: './src/client/index.js',
         theme: './src/client/theme.js'
     },
     output: {
-        filename: '[contenthash].js',
-        path: require('path').join(__dirname, 'dist/public/')
+        clean: true,
+        filename: `${isDev ? '[name]' : '[contenthash]'}.js`,
+        path: path.join(__dirname, 'dist/public/assets/')
     },
     module: {
         rules: [{
@@ -18,35 +25,37 @@ module.exports = {
             use: ['babel-loader']
         }, {
             test: /\.css$/,
-            use: [
-                'style-loader',
-                {
-                    loader: 'css-loader',
-                    options: {
-                        modules: {
-                            localIdentName: '[local]-[hash:base64:6]'
-                        }
+            exclude: /node_modules/,
+            use: [MiniCssExtractPlugin.loader, {
+                loader: 'css-loader',
+                options: {
+                    modules: {
+                        localIdentName: `[local]${isDev ? '' : '-[hash:base64:6]'}`
                     }
                 }
-            ]
+            }]
+        }, {
+            test: /\.css$/,
+            include: /node_modules/,
+            use: [MiniCssExtractPlugin.loader, 'css-loader']
         }, {
             test: /\.(png|svg|jpe?g|gif)$/,
-            use: [{
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'assets',
-                    name: '[hash].[ext]'
-                }
-            }]
+            type: 'asset/resource',
+            generator: {
+                filename: `images/${isDev ? '[name]' : '[contenthash]'}[ext]`
+            }
         }]
     },
     plugins: [
         new WebpackBar({
             name: 'MeowDB Explorer Page'
         }),
+        new MiniCssExtractPlugin({
+            filename: `${isDev ? '[name]' : '[contenthash]'}.css`
+        }),
         new htmlWebpack({
             template: './src/client/index.html',
-            filename: 'index.html',
+            filename: '../index.html',
             favicon: './src/client/assets/icon.png',
             meta: {
                 // Title
@@ -60,5 +69,12 @@ module.exports = {
             },
             base: '/'
         })
-    ]
+    ],
+    optimization: {
+        minimizer: [
+            '...',
+            ...(isDev ? [] : [new CssMinimizerPlugin()])
+        ],
+        runtimeChunk: 'single'
+    }
 };

@@ -22,7 +22,7 @@
     border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-[class*="darkTheme"] .utils .button {
+[class^="darkTheme"] .utils .button {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -74,7 +74,7 @@
     font-family: inherit;
 }
 
-[class*="darkTheme"] .property .value input {
+[class^="darkTheme"] .property .value input {
     background-color: #181818;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -101,15 +101,15 @@
     color: #098658;
 }
 
-[class*="darkTheme"] .property .value.boolean,
-[class*="darkTheme"] .property .value.undefined {
+[class^="darkTheme"] .property .value.boolean,
+[class^="darkTheme"] .property .value.undefined {
     color: #569cd6;
 }
 
-[class*="darkTheme"] .property .value.string {
+[class^="darkTheme"] .property .value.string {
     color: #ce9178;
 }
 
-[class*="darkTheme"] .property .value.number {
+[class^="darkTheme"] .property .value.number {
     color: #b5cea8;
 }
