@@ -33,8 +33,8 @@ export default class App extends React.Component {
                     <span>Explorer</span>
                 </Link>
                 <div className={styles.rightSide}>
-                    <a href='https://github.com/Drylotrans/MeowDB.js'>JavaScript</a>
-                    <a href='https://github.com/Drylotrans/MeowDB.rb'>Ruby</a>
+                    <a href='https://github.com/Drylozu/MeowDB.js'>JavaScript</a>
+                    <a href='https://github.com/Drylozu/MeowDB.rb'>Ruby</a>
                     <label className={styles.themeChanger}>
                         <input
                             type='checkbox'
