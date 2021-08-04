@@ -1,6 +1,7 @@
 import DownloadLink from 'react-download-link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import Head from 'next/head';
 
 import { PropertyValue } from '../components/Property';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -27,6 +28,9 @@ export default function Explorer() {
 
     return (
         <Layout>
+            <Head>
+                <title>Explore - MeowDB Explorer</title>
+            </Head>
             <div className={styles.utils}>
                 <a className={styles.button}
                     onClick={() => router.push('/')}
