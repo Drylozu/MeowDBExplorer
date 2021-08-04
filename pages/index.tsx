@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { ChangeEvent } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import useLocalStorage from '../hooks/useLocalStorage';
 import styles from '../styles/Home.module.css';
@@ -29,6 +30,9 @@ export default function Home() {
 
     return (
         <Layout>
+            <Head>
+                <title>MeowDB Explorer</title>
+            </Head>
             <div className={styles.header}>
                 <p className={styles.title}>Welcome</p>
             </div>
