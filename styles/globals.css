@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Noto+Sans+JP:wght@500&display=swap");
+
+*::selection, *::-moz-selection {
+    background-color: #666666;
+}
+
+* {
+    outline: transparent;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #181818;
+    background-color: #ccc;
+}
+
+html[data-theme='dark'] body {
+    color: #ccc;
+    background-color: #181818;
+}
