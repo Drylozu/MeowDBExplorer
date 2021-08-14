@@ -10,23 +10,21 @@ export default function useTheme(defaultTheme: Theme = 'light'): [Theme, SetThem
     const [theme, setThemeStorage] = useLocalStorage<Theme>('theme', defaultTheme, true);
 
     useEffect(() => {
-        if (theme) {
-            if (!themes.includes(theme)) {
-                setThemeStorage(defaultTheme);
-            }
-            const el = document.querySelector('html') as HTMLHtmlElement;
-            const htmlTheme = el.getAttribute('data-theme') as Theme | null;
-            if ((!htmlTheme || !themes.includes(htmlTheme)) || htmlTheme !== theme) {
-                el.setAttribute('data-theme', theme);
-            }
+        if (!themes.includes(theme)) {
+            setThemeStorage(defaultTheme);
+        }
+        const el = document.querySelector('html') as HTMLHtmlElement;
+        const htmlTheme = el.getAttribute('data-theme') as Theme | null;
+        if (htmlTheme !== theme) {
+            el.setAttribute('data-theme', theme);
         }
     }, [theme, setThemeStorage]);
 
     const setTheme = useCallback((newTheme: Theme) => {
-        if (themes.includes(newTheme) && theme !== newTheme) {
+        if (newTheme !== theme && themes.includes(newTheme)) {
             setThemeStorage(newTheme);
         }
     }, [theme, setThemeStorage]);
 
-    return [theme as Theme, setTheme];
+    return [theme, setTheme];
 }

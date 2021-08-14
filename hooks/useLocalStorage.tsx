@@ -1,24 +1,22 @@
-import { useEffect, useCallback, useState, useRef, Dispatch, SetStateAction } from 'react';
+import { useEffect, useCallback, useState, Dispatch, SetStateAction } from 'react';
 
 export default function useLocalStorage<T>(key: string, initialValue: T, restoreOnDelete: boolean = false): [T, Dispatch<SetStateAction<T | undefined>>, () => void] {
     const deserializer = JSON.parse;
     const serializer = JSON.stringify;
 
-    const initializer = useRef((key: string) => {
-        try {
+    const [state, setState] = useState<T>(initialValue);
+
+    useEffect(() => {
+        if (process.browser) {
             const localStorageValue = localStorage.getItem(key);
             if (localStorageValue !== null) {
-                return deserializer(localStorageValue);
+                setState(deserializer(localStorageValue));
             } else {
-                initialValue && localStorage.setItem(key, serializer(initialValue));
-                return initialValue;
+                localStorage.setItem(key, serializer(initialValue));
+                setState(initialValue);
             }
-        } catch {
-            return initialValue;
         }
-    });
-
-    const [state, setState] = useState<T>(() => initializer.current(key));
+    }, [key, process.browser]);
 
     const set: Dispatch<SetStateAction<T | undefined>> = useCallback((valOrFunc) => {
         try {
@@ -56,4 +54,4 @@ export default function useLocalStorage<T>(key: string, initialValue: T, restore
     }, [state, set, deserializer, serializer]);
 
     return [state, set, remove];
-};
+}
