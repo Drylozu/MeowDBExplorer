@@ -1,17 +1,59 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useCallback, useState, useRef, Dispatch, SetStateAction } from 'react';
 
-export default function useLocalStorage(key: string, initial: any) {
-    const [value, setValue] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const data = window.localStorage.getItem(key);
-            if (data !== null) return JSON.parse(data);
+export default function useLocalStorage<T>(key: string, initialValue: T, restoreOnDelete: boolean = false): [T, Dispatch<SetStateAction<T | undefined>>, () => void] {
+    const deserializer = JSON.parse;
+    const serializer = JSON.stringify;
+
+    const initializer = useRef((key: string) => {
+        try {
+            const localStorageValue = localStorage.getItem(key);
+            if (localStorageValue !== null) {
+                return deserializer(localStorageValue);
+            } else {
+                initialValue && localStorage.setItem(key, serializer(initialValue));
+                return initialValue;
+            }
+        } catch {
+            return initialValue;
         }
-        return initial;
     });
 
-    useEffect(() => {
-        window.localStorage.setItem(key, JSON.stringify(value));
-    }, [value]);
+    const [state, setState] = useState<T>(() => initializer.current(key));
 
-    return [value, setValue, () => window.localStorage.removeItem(key)];
-}
+    const set: Dispatch<SetStateAction<T | undefined>> = useCallback((valOrFunc) => {
+        try {
+            const newState = typeof valOrFunc === 'function' ? (valOrFunc as Function)(state) : valOrFunc;
+            if (typeof newState === 'undefined') return;
+            const value: string = serializer(newState);
+            localStorage.setItem(key, value);
+            setState(deserializer(value));
+        } catch {
+        }
+    }, [key, setState]);
+
+    const remove = useCallback(() => {
+        try {
+            localStorage.removeItem(key);
+            setState(initialValue);
+        } catch {
+        }
+    }, [key, setState]);
+
+    useEffect(() => {
+        const handleStorage = (e: StorageEvent) => {
+            if (e.key !== key) {
+                return;
+            }
+            if (e.newValue && serializer(state) !== e.newValue) {
+                set(deserializer(e.newValue));
+            }
+            else if (!e.newValue && restoreOnDelete) {
+                set(initialValue);
+            }
+        };
+        window.addEventListener('storage', handleStorage);
+        return () => window.removeEventListener('storage', handleStorage);
+    }, [state, set, deserializer, serializer]);
+
+    return [state, set, remove];
+};

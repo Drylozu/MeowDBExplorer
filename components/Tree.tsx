@@ -1,7 +1,7 @@
 import styles from '../styles/Explorer.module.css';
 import Property from './Property';
 
-export default function Tree({ data }: { data: any; }) {
+export default function Tree({ data }: { data: Record<string, unknown>; }) {
     const tree = Object.entries(typeof data === 'object' && data !== null ? data : {})
         .map(([p, v], i, a) =>
             <Property key={i} id={p} data={v} last={Boolean(i === (a.length - 1))} />);

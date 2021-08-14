@@ -8,8 +8,8 @@ import styles from '../styles/Home.module.css';
 import Layout from '../components/Layout';
 
 export default function Home() {
-    const [originalJSON, setOriginalJSON] = useLocalStorage('originalJSON', null);
-    const [_, setActualJSON] = useLocalStorage('actualJSON', null);
+    const [originalJSON, setOriginalJSON] = useLocalStorage<any>('originalJSON', null);
+    const [_, setActualJSON] = useLocalStorage<any>('actualJSON', null);
     const router = useRouter();
 
     const chooseFile = (event: ChangeEvent<HTMLInputElement>) => {

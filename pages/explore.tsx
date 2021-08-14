@@ -10,8 +10,8 @@ import Layout from '../components/Layout';
 import Tree from '../components/Tree';
 
 export default function Explorer() {
-    const [originalJSON, _, deleteOriginalJSON] = useLocalStorage('originalJSON', null);
-    const [actualJSON, __, deleteActualJSON] = useLocalStorage('actualJSON', {});
+    const [originalJSON, _, deleteOriginalJSON] = useLocalStorage<any>('originalJSON', null);
+    const [actualJSON, __, deleteActualJSON] = useLocalStorage<any>('actualJSON', {});
     const router = useRouter();
 
     const deleteAll = () => {
