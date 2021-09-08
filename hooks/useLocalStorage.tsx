@@ -1,17 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-export default function useLocalStorage(key: string, initial: any) {
-    const [value, setValue] = useState(() => {
+type LS<T = any> = [T, (value: T) => void, () => void];
+
+export default function useLocalStorage<T extends any>(key: string, initial: T): LS<T> {
+    const [value, setValue] = useState<T>(() => {
         if (typeof window !== 'undefined') {
             const data = window.localStorage.getItem(key);
-            if (data !== null) return JSON.parse(data);
+            if (data !== null)
+                try {
+                    return JSON.parse(data);
+                } catch { }
         }
         return initial;
     });
 
     useEffect(() => {
         window.localStorage.setItem(key, JSON.stringify(value));
-    }, [value]);
+    }, [key, value]);
 
-    return [value, setValue, () => window.localStorage.removeItem(key)];
+    const remove = useCallback(() => {
+        window.localStorage.removeItem(key);
+    }, [key]);
+
+    return [value, setValue, remove];
 }

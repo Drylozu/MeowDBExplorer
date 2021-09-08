@@ -1,4 +1,4 @@
-import { useTheme } from 'next-themes';
+import useTheme from '../hooks/useTheme';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import Link from 'next/link';
 import styles from '../styles/Layout.module.css';
 
 export default function Layout({ children }: { children: ReactNode; }) {
-    const { setTheme, theme } = useTheme();
+    const [theme, setTheme] = useTheme();
 
     return (<>
         <div className={styles.navbar}>
